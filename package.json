@@ -1,0 +1,8 @@
+{
+  "name": "permanence-des-soins",
+  "private": true,
+  "description": "Outil d'orientation des patients selon la situation et la permanence des soins",
+  "scripts": {
+    "test": "TZ=Europe/Paris node --test tests/outil.test.js"
+  }
+}
