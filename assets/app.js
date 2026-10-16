@@ -83,17 +83,32 @@
     return [id, noeud];
   }
 
+  // L'historique du navigateur est un plus (bouton retour du téléphone) ;
+  // il peut être indisponible dans certaines iframes.
+  function memoriser(remplacer = false) {
+    try {
+      history[remplacer ? "replaceState" : "pushState"]({ pile: etat.pile.slice(), choix: etat.choix.slice() }, "");
+    } catch (e) { /* navigation interne seulement */ }
+  }
+
   function aller(id, libelleChoix) {
     etat.pile.push(id);
     etat.choix.push(libelleChoix);
-    history.pushState({ pile: etat.pile.slice(), choix: etat.choix.slice() }, "");
+    memoriser();
+    afficher(true);
+  }
+
+  function retour() {
+    etat.pile.pop();
+    etat.choix.pop();
+    memoriser(true);
     afficher(true);
   }
 
   function recommencer() {
     etat.pile = [ARBRE.depart];
     etat.choix = [];
-    history.pushState({ pile: etat.pile.slice(), choix: [] }, "");
+    memoriser();
     afficher(true);
   }
 
@@ -190,7 +205,7 @@
         el("ul", { class: "conseils" }, n.conseils.map((c) => el("li", { html: completer(c) }))));
     }
     bloc.append(el("div", { class: "pied-resultat" },
-      el("button", { class: "bouton-secondaire", onclick: () => window.print() }, "🖨️ Imprimer"),
+      el("button", { class: "bouton-secondaire bouton-imprimer", onclick: () => window.print() }, "🖨️ Imprimer"),
       el("button", { class: "bouton-secondaire", onclick: recommencer }, "↺ Nouvelle recherche")));
     return bloc;
   }
@@ -205,7 +220,7 @@
     const [, noeud] = resoudre(etat.pile[etat.pile.length - 1]);
     const zone = $("#etape");
     const nav = el("div", { class: "navigation" },
-      etat.pile.length > 1 ? el("button", { class: "bouton-retour", onclick: () => history.back() }, "← Retour") : null,
+      etat.pile.length > 1 ? el("button", { class: "bouton-retour", onclick: retour }, "← Retour") : null,
       etat.pile.length > 1 ? el("button", { class: "bouton-lien", onclick: recommencer }, "Recommencer") : null);
     zone.replaceChildren(...[nav, rendreFilAriane(),
       noeud.type === "resultat" ? rendreResultat(noeud) : rendreQuestion(noeud)].filter(Boolean));
@@ -218,7 +233,7 @@
 
   // ───────────────────────────── Démarrage
   document.querySelectorAll("[data-cabinet]").forEach((n) => { n.textContent = C[n.dataset.cabinet]; });
-  history.replaceState({ pile: etat.pile.slice(), choix: [] }, "");
+  memoriser(true);
   afficher();
   setInterval(afficherContexte, 60 * 1000);
 })();

@@ -14,6 +14,7 @@
   --vert-fond: #ebf6ec;
   --bleu: #1d5fa8;
   --bleu-fond: #e9f1fb;
+  --sur-rouge: #ffffff;
   --rayon: 14px;
   --ombre: 0 1px 3px rgba(16, 32, 48, .08), 0 4px 16px rgba(16, 32, 48, .05);
 }
@@ -36,7 +37,30 @@
     --bleu: #74aef0;
     --bleu-fond: #182a40;
     --ombre: none;
+    --sur-rouge: #1a0000;
+    color-scheme: dark;
   }
+}
+
+:root[data-theme="dark"] {
+  --fond: #11161c;
+  --carte: #1a2129;
+  --texte: #e6edf3;
+  --texte-doux: #9aa8b6;
+  --bordure: #2c3640;
+  --accent: #4fb7d4;
+  --accent-fond: #15303a;
+  --rouge: #ff6b6b;
+  --rouge-fond: #3a1a1c;
+  --orange: #ffa94d;
+  --orange-fond: #3a2a17;
+  --vert: #69c26e;
+  --vert-fond: #1a3020;
+  --bleu: #74aef0;
+  --bleu-fond: #182a40;
+  --ombre: none;
+  --sur-rouge: #1a0000;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -57,12 +81,11 @@ main, .entete, .pied { max-width: 720px; margin: 0 auto; padding: 0 16px; }
   z-index: 10;
   padding: 10px 16px;
   background: var(--rouge);
-  color: #fff;
+  color: var(--sur-rouge);
   text-align: center;
   text-decoration: none;
   font-size: 1.05rem;
 }
-@media (prefers-color-scheme: dark) { .bandeau-urgence { color: #1a0000; } }
 
 .entete { padding-top: 24px; }
 h1 { margin: 0; font-size: 1.8rem; }
@@ -208,8 +231,7 @@ h1 { margin: 0; font-size: 1.8rem; }
   background: var(--accent-fond);
   border: 2px solid var(--accent);
 }
-.action-urgence { color: #fff; background: var(--rouge); border-color: var(--rouge); font-size: 1.15rem; }
-@media (prefers-color-scheme: dark) { .action-urgence { color: #1a0000; } }
+.action-urgence { color: var(--sur-rouge); background: var(--rouge); border-color: var(--rouge); font-size: 1.15rem; }
 
 .infos { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 12px 0; }
 .infos dt { font-weight: 600; color: var(--texte-doux); }
