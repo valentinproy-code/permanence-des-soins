@@ -7,24 +7,27 @@
  * avant la mise en ligne.
  */
 window.CABINET = {
-  nom: "Cabinet médical (À COMPLÉTER)",
-  ville: "Sarzeau",
+  nom: "Cabinet médical d'Arzon",
+  medecin: "Dr Valentin PROY",
+  adresse: "33 rue de la Poste, 56640 Arzon",
+  ville: "Arzon",
 
   // Secrétariat : numéro affiché et composé en un clic (format libre).
-  telephone: "02 00 00 00 00", // À COMPLÉTER
+  telephone: "02 97 49 25 36",
 
   // Lien de prise de rendez-vous Doctolib du cabinet.
-  doctolib: "https://www.doctolib.fr/", // À COMPLÉTER (lien direct vers la page du cabinet)
+  doctolib: "https://www.doctolib.fr/medecin-generaliste/arzon/valentin-proy",
 
   // Horaires d'ouverture du cabinet / secrétariat, par jour de la semaine.
   // 0 = dimanche, 1 = lundi … 6 = samedi. Plages au format "HH:MM".
+  // Mercredi après-midi : audiométrie et dermatologie, pas de créneaux d'urgence.
   horaires: {
-    1: [["08:30", "12:30"], ["14:00", "19:00"]],
-    2: [["08:30", "12:30"], ["14:00", "19:00"]],
-    3: [["08:30", "12:30"], ["14:00", "19:00"]],
-    4: [["08:30", "12:30"], ["14:00", "19:00"]],
-    5: [["08:30", "12:30"], ["14:00", "19:00"]],
-    6: [], // ex. [["08:30", "12:00"]] si le cabinet ouvre le samedi matin
+    1: [["08:30", "12:30"], ["14:00", "18:30"]],
+    2: [["08:30", "12:30"], ["14:00", "18:30"]],
+    3: [["08:30", "12:30"]],
+    4: [["08:30", "12:30"], ["14:00", "18:30"]],
+    5: [["08:30", "12:30"], ["14:00", "18:30"]],
+    6: [],
     0: []
   },
 

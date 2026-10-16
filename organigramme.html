@@ -6,27 +6,31 @@
   <title>Organigramme d'orientation</title>
   <link rel="stylesheet" href="assets/style.css">
   <style>
-    main { max-width: none; }
-    .schema { overflow-x: auto; padding: 16px; background: #fff; border-radius: var(--rayon); border: 1px solid var(--bordure); }
-    .legende { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: .9rem; margin: 12px 0; }
+    .orga { max-width: 1400px; margin: 0 auto; padding: 2rem 16px; }
+    .orga .sous-titre a { color: var(--accent); }
+    .schema { overflow-x: auto; padding: 16px; background: #ffffff; color: #17324d; border-radius: 14px; border: 1px solid var(--line); }
+    .legende { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: .9rem; margin: 12px 0 20px; color: var(--muted); }
     .legende span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--c); }
   </style>
 </head>
 <body>
-  <header class="entete">
-    <h1>Organigramme d'orientation</h1>
-    <p class="sous-titre">Généré automatiquement à partir de l'arbre de décision — <a href="index.html">retour à l'outil</a></p>
+  <div class="orga">
+  <header>
+    <span class="etiquette">Pour l'équipe</span>
+    <h1 class="grand-titre">Organigramme d'orientation</h1>
+    <p class="chapo sous-titre">Généré automatiquement à partir de l'arbre de décision — <a href="index.html">retour à l'outil</a></p>
     <div class="legende">
-      <span style="--c:#c62828">Urgence / 15</span>
-      <span style="--c:#c25e00">À voir rapidement</span>
-      <span style="--c:#2e7d32">Rendez-vous programmé</span>
-      <span style="--c:#1d5fa8">Information</span>
+      <span style="--c:#c23a2b">Urgence / 15</span>
+      <span style="--c:#b86b13">À voir rapidement</span>
+      <span style="--c:#238b57">Rendez-vous programmé</span>
+      <span style="--c:#3578c8">Information</span>
       <span style="--c:#7b61c9">Aiguillage selon l'heure</span>
     </div>
   </header>
   <main>
     <div class="schema"><pre class="mermaid" id="schema"></pre></div>
   </main>
+  </div>
 
   <script src="assets/config.js"></script>
   <script src="assets/arbre.js"></script>
@@ -50,10 +54,10 @@
       lignes.push(
         "  classDef question fill:#e6f3f7,stroke:#0b6e8a,color:#1c2733",
         "  classDef aiguillage fill:#efeafb,stroke:#7b61c9,color:#1c2733",
-        "  classDef rouge fill:#fdecec,stroke:#c62828,color:#7f1010,font-weight:bold",
-        "  classDef orange fill:#fff3e5,stroke:#c25e00,color:#6b3400",
-        "  classDef vert fill:#ebf6ec,stroke:#2e7d32,color:#1b4d1e",
-        "  classDef bleu fill:#e9f1fb,stroke:#1d5fa8,color:#123b69"
+        "  classDef rouge fill:#fdecec,stroke:#c23a2b,color:#7f1010,font-weight:bold",
+        "  classDef orange fill:#fff3e5,stroke:#b86b13,color:#6b3400",
+        "  classDef vert fill:#ebf6ec,stroke:#238b57,color:#1b4d1e",
+        "  classDef bleu fill:#e9f1fb,stroke:#3578c8,color:#123b69"
       );
       document.getElementById("schema").textContent = lignes.join("\n");
       mermaid.initialize({ startOnLoad: true, theme: "default", flowchart: { useMaxWidth: false } });

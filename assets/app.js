@@ -51,7 +51,7 @@
   const completer = (texte) => texte.replace(/\{prochaineOuverture\}/g, texteProchaineOuverture());
 
   function afficherContexte() {
-    const zone = $("#contexte");
+    const zone = $("#moment");
     const c = creneauCourant();
     const auto = etat.creneauForce === "auto";
     const select = el("select", { id: "choix-creneau", "aria-label": "Moment de la demande" },
@@ -65,10 +65,10 @@
       afficher();
     });
     zone.replaceChildren(
-      el("span", { class: "contexte-texte" },
-        auto ? `🕒 ${H.decrireMaintenant(new Date())} — ` : "🕒 Situation simulée — ",
+      el("span", { class: "moment-texte" },
+        auto ? `${H.decrireMaintenant(new Date())} · ` : "Situation simulée · ",
         el("strong", {}, LIBELLES_CRENEAU[c])),
-      el("label", { class: "contexte-choix" }, "Pour quand ? ", select)
+      el("label", { class: "moment-choix" }, "Pour quand ?", select)
     );
   }
 
@@ -165,17 +165,19 @@
   }
 
   // ───────────────────────────── Rendu
-  function rendreQuestion(n) {
-    const bloc = el("section", { class: `carte ${n.variante === "danger" ? "carte-danger" : ""}` },
-      el("h2", { tabindex: "-1" }, n.titre));
+  function rendreQuestion(n, etape) {
+    const bloc = el("section", { class: `question ${n.variante === "danger" ? "question-danger" : ""}` },
+      el("header", { class: "rubrique-tete" },
+        el("span", { class: "numero", "aria-hidden": "true" }, String(etape)),
+        el("h2", { tabindex: "-1" }, n.titre)));
     if (n.texte) bloc.append(el("p", { class: "aide" }, n.texte));
     if (n.liste) bloc.append(el("ul", { class: "liste-signes" }, n.liste.map((l) => el("li", {}, l))));
     bloc.append(el("div", { class: "options" }, n.options.map((o) =>
       el("button", { class: `option ${o.style === "danger" ? "option-danger" : ""}`, onclick: () => aller(o.suivant, o.libelle) },
-        o.icone ? el("span", { class: "option-icone", "aria-hidden": "true" }, o.icone) : null,
         el("span", { class: "option-texte" },
           el("span", { class: "option-libelle" }, o.libelle),
-          o.detail ? el("span", { class: "option-detail" }, o.detail) : null)))));
+          o.detail ? el("span", { class: "option-detail" }, o.detail) : null),
+        el("span", { class: "fleche", "aria-hidden": "true" }, "→")))));
     if (n.recherche) bloc.append(blocRecherche());
     return bloc;
   }
@@ -184,14 +186,14 @@
     if (a.type === "tel") {
       const num = a.valeur.replace(/[^\d+]/g, "");
       return el("a", { class: `action ${num === "15" || num === "112" ? "action-urgence" : ""}`, href: `${a.sms ? "sms" : "tel"}:${num}` },
-        el("span", { "aria-hidden": "true" }, a.sms ? "💬 " : "📞 "), a.libelle);
+        el("span", {}, a.libelle), el("span", { class: "fleche", "aria-hidden": "true" }, a.sms ? "SMS" : "☎"));
     }
     return el("a", { class: "action action-lien", href: a.valeur, target: "_blank", rel: "noopener" },
-      el("span", { "aria-hidden": "true" }, "🔗 "), a.libelle);
+      el("span", {}, a.libelle), el("span", { class: "fleche", "aria-hidden": "true" }, "↗"));
   }
 
   function rendreResultat(n) {
-    const bloc = el("section", { class: `carte resultat niveau-${n.niveau}` },
+    const bloc = el("section", { class: `resultat niveau-${n.niveau}` },
       el("p", { class: "resultat-etiquette" }, {
         rouge: "Urgence", orange: "À voir rapidement", vert: "Consultation programmée", bleu: "Information"
       }[n.niveau]),
@@ -205,8 +207,8 @@
         el("ul", { class: "conseils" }, n.conseils.map((c) => el("li", { html: completer(c) }))));
     }
     bloc.append(el("div", { class: "pied-resultat" },
-      el("button", { class: "bouton-secondaire bouton-imprimer", onclick: () => window.print() }, "🖨️ Imprimer"),
-      el("button", { class: "bouton-secondaire", onclick: recommencer }, "↺ Nouvelle recherche")));
+      el("button", { class: "bouton-lien", onclick: recommencer }, "Nouvelle recherche"),
+      el("button", { class: "bouton-lien bouton-imprimer", onclick: () => window.print() }, "Imprimer cette conduite à tenir")));
     return bloc;
   }
 
@@ -220,19 +222,21 @@
     const [, noeud] = resoudre(etat.pile[etat.pile.length - 1]);
     const zone = $("#etape");
     const nav = el("div", { class: "navigation" },
-      etat.pile.length > 1 ? el("button", { class: "bouton-retour", onclick: retour }, "← Retour") : null,
+      etat.pile.length > 1 ? el("button", { class: "bouton-lien", onclick: retour }, "← Question précédente") : null,
       etat.pile.length > 1 ? el("button", { class: "bouton-lien", onclick: recommencer }, "Recommencer") : null);
     zone.replaceChildren(...[nav, rendreFilAriane(),
-      noeud.type === "resultat" ? rendreResultat(noeud) : rendreQuestion(noeud)].filter(Boolean));
+      noeud.type === "resultat" ? rendreResultat(noeud) : rendreQuestion(noeud, etat.pile.length)].filter(Boolean));
     if (focus) {
       const titre = zone.querySelector("h2");
       if (titre) titre.focus();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (zone.getBoundingClientRect().top < 0) zone.scrollIntoView({ block: "start" });
     }
   }
 
   // ───────────────────────────── Démarrage
   document.querySelectorAll("[data-cabinet]").forEach((n) => { n.textContent = C[n.dataset.cabinet]; });
+  document.querySelectorAll("[data-cabinet-tel]").forEach((n) => { n.href = `tel:${C.telephone.replace(/[^\d+]/g, "")}`; });
+  document.querySelectorAll("[data-cabinet-href]").forEach((n) => { n.href = C[n.dataset.cabinetHref]; });
   memoriser(true);
   afficher();
   setInterval(afficherContexte, 60 * 1000);

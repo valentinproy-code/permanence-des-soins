@@ -3,32 +3,74 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Où consulter ?</title>
-  <meta name="description" content="Outil d'orientation des patients : qui appeler et où consulter selon votre situation et le moment (permanence des soins).">
+  <title>Où consulter ? — Dr Valentin PROY</title>
+  <meta name="description" content="Malade un dimanche, blessé à la main, besoin d'une ordonnance ? Quelques questions pour savoir qui appeler et où consulter sur la presqu'île de Rhuys.">
+  <link rel="icon" type="image/svg+xml" href="https://valentinproy.fr/favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <a class="bandeau-urgence" href="tel:15">
-    <span aria-hidden="true">🚨</span> Urgence vitale ? <strong>Appelez le 15</strong>
-  </a>
+  <a class="bandeau-urgence" href="tel:15">Urgence vitale ? <strong>Appelez le 15</strong></a>
 
   <header class="entete">
-    <h1>Où consulter ?</h1>
-    <p class="sous-titre"><span data-cabinet="nom"></span> — orientation selon votre situation</p>
+    <a class="marque" href="https://valentinproy.fr/" aria-label="Dr Valentin PROY — retour à l'accueil">
+      <span class="salut">
+        <svg viewBox="0 0 20 28" width="15" height="21" fill="currentColor" aria-hidden="true"><circle cx="10" cy="2.6" r="2"/><circle cx="5.2" cy="5.4" r="1.7"/><circle cx="14.8" cy="5.4" r="1.7"/><path d="M10 6.5c-1.6 3-2 6.4-1.3 10.2L4 26.5l3.6-2.2 2.4 3.4 2.4-3.4 3.6 2.2-4.7-9.8c.7-3.8.3-7.2-1.3-10.2z"/></svg>
+        Degemer mat !
+      </span>
+      <span class="nom">Dr Valentin PROY<svg class="trait" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 C 50 3, 110 4, 160 7 S 225 10, 237 4"/></svg></span>
+    </a>
+    <nav class="menu" aria-label="Rubriques">
+      <a href="https://valentinproy.fr/cabinet/"><span class="numero petit" aria-hidden="true">1</span> Activité médicale</a>
+      <a href="https://valentinproy.fr/parcours/"><span class="numero petit" aria-hidden="true">2</span> Parcours</a>
+      <a href="https://valentinproy.fr/blog/"><span class="numero petit" aria-hidden="true">3</span> Blog</a>
+      <a href="https://valentinproy.fr/#outils" class="actif"><span class="numero petit" aria-hidden="true">4</span> Outils</a>
+    </nav>
   </header>
 
-  <main>
-    <div id="contexte" class="contexte"></div>
-    <div id="etape" aria-live="polite"></div>
-  </main>
+  <div class="page">
+    <aside class="contexte">
+      <a class="contexte-titre" href="https://valentinproy.fr/#outils"><span class="numero" aria-hidden="true">4</span><span>Outils</span></a>
+      <p class="cabinet-nom" data-cabinet="nom"></p>
+      <p data-cabinet="adresse"></p>
+      <p class="muted">Du lundi au vendredi, sur rendez-vous</p>
+      <p class="telephone"><a data-cabinet="telephone" data-cabinet-tel></a></p>
+      <p class="actions-site"><a data-cabinet-href="doctolib">Prendre rendez-vous en ligne ↗</a></p>
 
-  <footer class="pied">
-    <p>Cet outil vous aide à vous orienter ; il ne remplace pas un avis médical.
-      <strong>En cas de doute, appelez le 15.</strong></p>
-    <p>Numéros utiles : 15 (SAMU) · 112 (urgence européen) · 114 (SMS, personnes sourdes ou malentendantes)
-      · 18 (pompiers) · 3114 (prévention du suicide) · 3237 (pharmacie de garde)</p>
-    <p><a href="organigramme.html">Voir l'organigramme complet</a></p>
-  </footer>
+      <div class="numeros">
+        <h3>Numéros utiles</h3>
+        <dl class="tableau">
+          <dt>15</dt><dd>SAMU, régulation médicale</dd>
+          <dt>112</dt><dd>Urgences, numéro européen</dd>
+          <dt>114</dt><dd>Urgences par SMS (sourds, malentendants)</dd>
+          <dt>18</dt><dd>Pompiers</dd>
+          <dt>3114</dt><dd>Prévention du suicide</dd>
+          <dt>3237</dt><dd>Pharmacie de garde</dd>
+        </dl>
+      </div>
+    </aside>
+
+    <main>
+      <span class="etiquette">Outil patient</span>
+      <h1 class="grand-titre">Où consulter ?</h1>
+      <p class="chapo">Quelques questions pour savoir qui appeler et où vous rendre, selon votre situation et le moment de la semaine.</p>
+
+      <div id="moment" class="moment"></div>
+      <div id="etape" aria-live="polite"></div>
+
+      <div class="bloc">
+        <h3>Pour l'équipe</h3>
+        <p>L'ensemble des parcours est visible sur <a href="organigramme.html">l'organigramme d'orientation</a>.</p>
+      </div>
+
+      <p class="avertissement">Cet outil vous aide à vous orienter ; il ne remplace pas un avis médical. En cas de doute, appelez le 15. Aucune donnée n'est enregistrée ni transmise.</p>
+
+      <footer class="pied">
+        <span>© 2026 Dr Valentin PROY</span>
+        <a href="https://valentinproy.fr/mentions-legales/">Mentions légales</a>
+        <span class="breizh"><svg viewBox="0 0 20 28" width="13" height="18" fill="currentColor" aria-hidden="true"><circle cx="10" cy="2.6" r="2"/><circle cx="5.2" cy="5.4" r="1.7"/><circle cx="14.8" cy="5.4" r="1.7"/><path d="M10 6.5c-1.6 3-2 6.4-1.3 10.2L4 26.5l3.6-2.2 2.4 3.4 2.4-3.4 3.6 2.2-4.7-9.8c.7-3.8.3-7.2-1.3-10.2z"/></svg> Graet e Breizh · sans cookie</span>
+      </footer>
+    </main>
+  </div>
 
   <script src="assets/config.js"></script>
   <script src="assets/horaires.js"></script>

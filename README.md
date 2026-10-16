@@ -1,5 +1,7 @@
 # Où consulter ? — Outil d'orientation des patients
 
+Outil du cabinet médical d'Arzon (Dr Valentin PROY), aux couleurs de [valentinproy.fr](https://valentinproy.fr/).
+
 Outil web interactif qui guide le patient, par une suite de questions simples, vers **la bonne
 réponse au bon moment** : appel au 15, créneau d'urgence au cabinet, Maison Médicale de Garde
 de Sarzeau, SOS Main, prise de rendez-vous Doctolib…
@@ -30,8 +32,8 @@ de Sarzeau, SOS Main, prise de rendez-vous Doctolib…
 
 ## ✏️ Personnaliser
 
-1. **`assets/config.js`** — coordonnées et horaires du cabinet. Compléter toutes les valeurs « À COMPLÉTER » :
-   nom, téléphone, lien Doctolib, horaires, adresse et horaires de la MMG, centre SOS Main, congés, ponts.
+1. **`assets/config.js`** — coordonnées et horaires du cabinet (déjà renseignés pour Arzon). Restent « À COMPLÉTER » :
+   adresse et horaires de la MMG de Sarzeau, centre SOS Main ; à tenir à jour : congés et ponts.
 2. **`assets/arbre.js`** — l'arbre de décision (questions, réponses, conduites à tenir). Chaque nœud est
    documenté en tête de fichier. Après modification, lancer les tests : ils vérifient qu'aucune réponse
    ne mène dans le vide et que chaque réponse « danger » aboutit bien au 15.
@@ -64,3 +66,7 @@ relus et validés par les médecins du cabinet avant publication.
 - Parcours supplémentaires : grossesse, personne âgée/chute à domicile, demande de visite à domicile, certificat de décès.
 - Version multilingue (anglais pour les touristes de la presqu'île en été).
 - Statistiques anonymes d'usage (sans cookie) pour adapter l'offre de créneaux.
+
+## Crédits
+
+Police Caveat (SIL Open Font License 1.1), hébergée localement dans `assets/fonts/` : aucune requête vers un service tiers.
