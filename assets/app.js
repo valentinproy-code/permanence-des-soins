@@ -200,7 +200,8 @@
       el("h2", { tabindex: "-1" }, n.titre),
       el("p", { class: "resultat-texte", html: completer(n.texte) }));
     if (n.actions && n.actions.length) bloc.append(el("div", { class: "actions" }, n.actions.map(rendreAction)));
-    const infos = (n.infos || []).filter(([, v]) => v);
+    // Les valeurs encore « à compléter » dans config.js ne sont pas montrées aux patients.
+    const infos = (n.infos || []).filter(([, v]) => v && !/compléter/i.test(v));
     if (infos.length) bloc.append(el("dl", { class: "infos" }, infos.map(([k, v]) => [el("dt", {}, k), el("dd", {}, v)])));
     if (n.conseils) {
       bloc.append(el("h3", {}, "Conseils"),
