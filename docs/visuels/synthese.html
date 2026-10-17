@@ -1,0 +1,26 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../assets/style.css">
+<style>
+body{padding:40px}
+.t{border-collapse:separate;border-spacing:8px;width:100%;font-size:15px}
+.t th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);text-align:left;padding:0 10px;font-weight:600;vertical-align:bottom}
+.t th small{display:block;text-transform:none;letter-spacing:0;color:var(--muted);font-weight:400;font-size:.8rem}
+.t td{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;vertical-align:top;line-height:1.35}
+.t td.s{background:none;border:0;font-weight:600;color:var(--ink);padding-left:0;width:18%}
+.t td b{display:block;color:var(--teinte)}
+.r{--teinte:var(--urgence);border-left:3px solid var(--urgence)!important}
+.o{--teinte:var(--alert);border-left:3px solid var(--alert)!important}
+.v{--teinte:var(--ok);border-left:3px solid var(--ok)!important}
+.t td span{color:var(--muted);font-size:.85rem}
+.full{text-align:center}
+h1{font-family:var(--hand);font-size:2.4rem;margin:0 0 4px;transform:rotate(-1.5deg);display:inline-block}
+p.c{color:var(--muted);margin:0 0 18px}
+</style></head><body>
+<h1>Qui appeler, et quand ?</h1><p class="c">La réponse de l'outil selon la situation et le moment de la semaine.</p>
+<table class="t">
+<tr><th></th><th>Cabinet ouvert<small>lun.–ven. en journée</small></th><th>Cabinet fermé<small>semaine, avant 20 h</small></th><th>Garde<small>soir, samedi a.-m., dimanche, férié</small></th><th>Nuit<small>minuit – 8 h</small></th></tr>
+<tr><td class="s">Signe d'urgence vitale</td><td colspan="4" class="r full"><b>15 immédiatement</b><span>112 · 114 par SMS · consignes en attendant les secours</span></td></tr>
+<tr><td class="s">Malade, à voir aujourd'hui</td><td class="o"><b>Secrétariat</b><span>créneaux d'urgence du jour</span></td><td class="o"><b>Réouverture</b><span>ou 15 si ça ne peut pas attendre</span></td><td class="o"><b>15 → MMG de Sarzeau</b><span>après régulation</span></td><td class="o"><b>15</b><span>pas de consultation de garde</span></td></tr>
+<tr><td class="s">Blessure de la main</td><td colspan="4" class="o full"><b>Centre SOS Main</b><span>dans les 6 heures · 15 si amputation ou hémorragie</span></td></tr>
+<tr><td class="s">Ordonnance, résultats, papiers</td><td colspan="4" class="v full"><b>Rendez-vous Doctolib ou téléphone</b><span>consultation programmée</span></td></tr>
+<tr><td class="s">Autres parcours</td><td colspan="4" class="full" style="--teinte:var(--accent)"><b>Dentaire · 3114 · centre antipoison · pharmacie de garde (3237)</b></td></tr>
+</table></body></html>
