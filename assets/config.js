@@ -40,16 +40,16 @@ window.CABINET = {
   // Maison Médicale de Garde
   mmg: {
     nom: "Maison Médicale de Garde de Sarzeau",
-    adresse: "Adresse à compléter, 56370 Sarzeau", // À COMPLÉTER
+    adresse: "34 rue de Brenudel, 56370 Sarzeau",
     horairesTexte: "Soirs de semaine, samedi après-midi, dimanches et jours fériés (horaires à compléter)", // À COMPLÉTER
-    carte: "" // facultatif : lien Google Maps / OpenStreetMap
+    carte: "https://www.openstreetmap.org/search?query=34%20rue%20de%20Brenudel%2056370%20Sarzeau"
   },
 
   // Urgences de la main (plaie, section de tendon, doigt écrasé…)
   sosMain: {
-    nom: "Centre SOS Main le plus proche (À COMPLÉTER)",
-    telephone: "", // À COMPLÉTER
-    adresse: "" // À COMPLÉTER
+    nom: "SOS Main de la Clinique Océane",
+    telephone: "", // À COMPLÉTER (numéro direct du service, facultatif)
+    adresse: "Clinique Océane, Vannes"
   },
 
   // Garde dentaire (dimanches et jours fériés)

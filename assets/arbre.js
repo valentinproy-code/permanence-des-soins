@@ -330,8 +330,8 @@ window.construireArbre = function (C) {
       r_sos_main: {
         type: "resultat",
         niveau: "orange",
-        titre: "Urgence de la main : consultez un centre SOS Main",
-        texte: "Les plaies de la main doivent être explorées par un chirurgien spécialisé, idéalement <strong>dans les 6 heures</strong>. Appelez le centre avant de vous déplacer. En cas de doute ou si vous ne pouvez pas le joindre, appelez le 15.",
+        titre: `Urgence de la main : ${C.sosMain.nom || "consultez un centre SOS Main"}`,
+        texte: `Les plaies de la main doivent être explorées par un chirurgien spécialisé, idéalement <strong>dans les 6 heures</strong>. ${C.sosMain.telephone ? "Appelez le centre avant de vous déplacer. En cas de doute ou si vous ne pouvez pas le joindre, appelez le 15." : "Rendez-vous au centre SOS Main ; en cas de doute, ou la nuit, appelez d'abord le 15."}`,
         actions: (C.sosMain.telephone ? [{ type: "tel", valeur: C.sosMain.telephone, libelle: `Appeler ${C.sosMain.nom}` }] : []).concat([appel15]),
         infos: [
           ["Centre", C.sosMain.nom],
